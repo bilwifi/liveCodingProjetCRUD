@@ -1,5 +1,6 @@
 const conf = config();
 const tbody = document.querySelector("#tbody");
+const btnAdd = document.querySelector("#btnAjouter");
 const btnSubmit = document.querySelector("#submit");
 const form = document.querySelector("#form");
 
@@ -19,7 +20,11 @@ function getEmployes() {
       console.log(error);
     });
 }
-// post
+// post and put
+btnAdd.addEventListener('click',function(){
+    form.reset();
+    btnSubmit.innerText = "Ajouter";
+  });
 btnSubmit.addEventListener("click", function () {
   if (validerFormulaire(form)) {
     const employe = recupererToutLesInput(form);
@@ -30,6 +35,7 @@ btnSubmit.addEventListener("click", function () {
     }
   }
 });
+// post
 function addEmploye(data) {
   delete data._id;
   axios
